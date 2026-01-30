@@ -1,0 +1,451 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thiện Master AI - Ultimate VIP Luxury Tet</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- NANO BANANA PRO TITANIUM 5.0 FONT STACK -->
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;900&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Cinzel+Decorative:wght@400;700;900&family=Montserrat:wght@400;600;800;900&family=Bebas+Neue&family=Inter:wght@400;600;800&family=Roboto+Flex:opsz,wght@8..144,400;700;900&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        /* VIP Palette */
+        --bg-main: #D70018; /* Red Core */
+        --bg-deep: #8B0000; /* Deep Red */
+        --bg-glass: rgba(139, 0, 0, 0.75); /* Darker Glass for better contrast */
+        --bg-soft-glass: rgba(255, 255, 255, 0.15); 
+        --accent-gold: #FFD700; /* Pure Gold */
+        --accent-gold-dim: #C5A000;
+        --accent-red: #FF1A1A;
+        --text-light: #FFFFFF;
+        --text-ivory: #FFFFF0;
+        --text-gold: #FFD700;
+        --border-gold: linear-gradient(45deg, #FFD700, #FFFACD, #FFD700);
+        
+        /* Fonts */
+        --font-display: 'Cinzel Decorative', serif;
+        --font-heading: 'Playfair Display', serif;
+        --font-body: 'Be Vietnam Pro', sans-serif;
+        --font-modern: 'Montserrat', sans-serif;
+      }
+
+      body {
+        font-family: var(--font-body);
+        background-color: var(--bg-main);
+        color: var(--text-light);
+        /* Luxury Pattern Background */
+        background-image:
+          linear-gradient(to bottom, rgba(215, 0, 24, 0.9), rgba(139, 0, 0, 0.95)),
+          url('https://www.transparenttextures.com/patterns/seigaiha.png'); /* Traditional upscale pattern */
+        background-attachment: fixed;
+        background-size: cover, 200px 200px;
+        overflow-x: hidden;
+        line-height: 1.6;
+        user-select: none; /* Prevent text selection */
+        -webkit-user-select: none;
+      }
+
+      /* Typography Upgrades */
+      h1, h2, h3 {
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+      }
+      
+      .font-display { font-family: var(--font-display); }
+      .font-heading { font-family: var(--font-heading); }
+      .font-modern { font-family: var(--font-modern); }
+
+      /* Gold Shimmer Effect */
+      .shimmer-gold {
+        background: linear-gradient(90deg, #FFD700 0%, #FFF8DC 50%, #FFD700 100%);
+        background-size: 200% auto;
+        color: #3E0000;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shimmer 3s linear infinite;
+      }
+
+      @keyframes shimmer {
+        to { background-position: 200% center; }
+      }
+
+      /* Glass Card Upgrade */
+      .glass-panel {
+        background: var(--bg-glass);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 215, 0, 0.3);
+        box-shadow: 
+          0 8px 32px 0 rgba(0, 0, 0, 0.37),
+          inset 0 0 0 1px rgba(255, 215, 0, 0.1);
+      }
+
+      /* Neon Glow Animation */
+      @keyframes vip-glow {
+        0%, 100% { box-shadow: 0 0 5px var(--accent-gold), inset 0 0 10px var(--accent-gold); border-color: var(--accent-gold); }
+        50% { box-shadow: 0 0 20px var(--accent-gold), inset 0 0 20px var(--accent-gold); border-color: white; }
+      }
+      
+      .animate-vip-glow {
+        animation: vip-glow 3s infinite ease-in-out;
+      }
+
+      /* Scrollbar Luxury */
+      ::-webkit-scrollbar { width: 10px; }
+      ::-webkit-scrollbar-track { background: #500000; }
+      ::-webkit-scrollbar-thumb { 
+        background: linear-gradient(to bottom, #FFD700, #B8860B); 
+        border-radius: 5px; 
+        border: 2px solid #500000;
+      }
+
+      /* Falling Elements */
+      .petal {
+        position: fixed;
+        z-index: 0;
+        pointer-events: none;
+        animation-name: fall;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+      }
+      @keyframes fall {
+        0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 1; }
+        100% { top: 110%; transform: translateX(100px) rotate(360deg); opacity: 0; }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom": "https://aistudiocdn.com/react-dom@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    
+    <!-- VIP Falling Effect Script -->
+    <script>
+      function createVIPElement() {
+        const el = document.createElement('div');
+        el.className = 'petal';
+        const items = ['🧧', '💰', '💎', '🌸', '✨', '🐎'];
+        el.innerHTML = items[Math.floor(Math.random() * items.length)];
+        
+        // Randomize size
+        const size = Math.random() * 20 + 15 + 'px';
+        el.style.fontSize = size;
+        
+        // Randomize position
+        el.style.left = Math.random() * 100 + 'vw';
+        
+        // Randomize duration
+        const duration = Math.random() * 5 + 4 + 's';
+        el.style.animationDuration = duration;
+        
+        document.body.appendChild(el);
+        
+        setTimeout(() => { el.remove(); }, parseFloat(duration) * 1000);
+      }
+      setInterval(createVIPElement, 400);
+    </script>
+    
+    <script type="module" src="/index.tsx"></script>
+
+    <!-- ========================================================================= -->
+    <!-- HỆ THỐNG ĐĂNG NHẬP: TẾT BÍNH NGỌ - MÃ ĐÁO THÀNH CÔNG - HARD LOCK -->
+    <!-- ========================================================================= -->
+    <script>
+    (function() {
+      // --- 1. CẤU HÌNH ---
+      // Sử dụng localStorage để khóa danh tính vĩnh viễn trên thiết bị
+      const STORAGE_KEY = 'tet_binh_ngo_identity_lock_v3_horses';
+      
+      // CSS Injection cho Giao diện Đăng Nhập
+      const sysStyle = document.createElement('style');
+      sysStyle.innerHTML = `
+        /* 1. LOGIN OVERLAY - GATEKEEPER */
+        #vip-gatekeeper {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            /* Nền Tết Rực Rỡ */
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://img.pikbest.com/backgrounds/20220119/festive-red-gold-pattern-chinese-new-year-background_6243887.jpg!sw800');
+            background-size: cover; background-position: center;
+            z-index: 999999; display: flex; justify-content: center; align-items: center;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            transition: opacity 0.8s ease;
+        }
+
+        .gate-card {
+            background: rgba(30, 0, 0, 0.95); 
+            border: 3px solid #FFD700;
+            box-shadow: 0 0 80px rgba(255, 69, 0, 0.8), inset 0 0 30px rgba(255, 215, 0, 0.2);
+            padding: 30px 20px; 
+            border-radius: 30px; 
+            text-align: center; 
+            width: 90%; 
+            max-width: 450px; /* Reduced width */
+            position: relative; overflow: visible; 
+            animation: cardEntry 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+            backdrop-filter: blur(20px);
+        }
+
+        .vip-logo { 
+            font-size: 60px; margin-bottom: 15px; 
+            filter: drop-shadow(0 0 20px rgba(255,215,0,0.8));
+            animation: gallop 2s infinite ease-in-out; 
+            white-space: nowrap;
+        }
+
+        @keyframes gallop {
+             0%, 100% { transform: translateY(0) scale(1); }
+             50% { transform: translateY(-5px) scale(1.05); }
+        }
+
+        /* SIÊU TIÊU ĐỀ PLASMA GLOW */
+        .vip-title-text {
+            font-family: 'Cinzel Decorative', serif; font-size: 40px; font-weight: 900;
+            background: linear-gradient(to bottom, #FFFFAA 0%, #FFD700 20%, #FFA500 50%, #FF4500 80%, #8B0000 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px;
+            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
+            animation: titlePlasma 4s infinite alternate;
+            position: relative; line-height: 1.1;
+        }
+        
+        @keyframes titlePlasma {
+            0% { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8)); text-shadow: 0 0 5px #FFD700; transform: scale(1); }
+            100% { filter: drop-shadow(0 0 15px rgba(255, 215, 0, 1)); text-shadow: 0 0 15px #FF4500; transform: scale(1.02); }
+        }
+
+        .vip-subtitle {
+             color: #FFD700; font-size: 16px; margin-bottom: 25px; 
+             font-family: 'Playfair Display', serif; font-style: italic; letter-spacing: 1px;
+             text-shadow: 0 1px 3px rgba(0,0,0,1); border-top: 1px solid rgba(255,215,0,0.5);
+             border-bottom: 1px solid rgba(255,215,0,0.5); display: inline-block; padding: 5px 20px;
+             background: rgba(255, 0, 0, 0.2);
+        }
+        
+        .vip-input-container { position: relative; margin-bottom: 20px; }
+
+        .vip-input-field {
+            width: 100%; padding: 18px; 
+            background: rgba(0,0,0,0.8);
+            border: 2px solid #FFD700; color: #FFD700; border-radius: 40px; 
+            font-size: 18px; font-weight: 700; text-align: center;
+            outline: none; transition: all 0.3s;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.8), 0 0 10px rgba(255, 215, 0, 0.2);
+        }
+        .vip-input-field:focus { box-shadow: 0 0 30px #FFD700, inset 0 0 10px #FFD700; background: rgba(50, 0, 0, 0.95); }
+        .vip-input-field:disabled { background: rgba(20, 0, 0, 0.9); border-color: #555; color: #888; cursor: not-allowed; box-shadow: none; }
+        
+        .vip-btn {
+            width: 100%; padding: 18px; 
+            font-weight: 900; font-size: 20px;
+            border-radius: 40px; border: none; cursor: pointer; text-transform: uppercase; letter-spacing: 2px;
+            transition: all 0.3s; position: relative; overflow: hidden;
+            background: linear-gradient(90deg, #FFD700, #FF8C00, #FF4500, #FFD700);
+            background-size: 300% auto;
+            color: #500000;
+            box-shadow: 0 5px 30px rgba(255, 69, 0, 0.8);
+            animation: shimmer-btn 2s infinite linear;
+        }
+        .vip-btn:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 0 50px rgba(255, 215, 0, 1); color: #000; }
+
+        .vip-btn.locked {
+            background: linear-gradient(90deg, #32CD32, #008000, #32CD32);
+            color: #002200;
+            box-shadow: 0 0 30px #32CD32;
+        }
+
+        .locked-message {
+            margin-top: 15px; color: #ff6666; font-size: 12px; font-weight: bold; background: rgba(50,0,0,0.8); padding: 10px; border-radius: 15px; border: 1px solid #ff4444;
+        }
+
+        @keyframes shimmer-btn { to { background-position: 300% center; } }
+        @keyframes cardEntry { from { transform: scale(0.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+        .login-fall-item { position: fixed; top: -10vh; z-index: 100000; pointer-events: none; animation: loginFall linear infinite; }
+        @keyframes loginFall { to { top: 110vh; transform: rotate(360deg); } }
+
+        /* SECURITY SCREEN */
+        #security-lock-screen {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 9999999;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            color: red; font-family: monospace; text-align: center; padding: 20px;
+        }
+      `;
+      document.head.appendChild(sysStyle);
+
+      class AppSystem {
+        constructor() {
+            this.init();
+            this.activateSecurity();
+        }
+
+        activateSecurity() {
+            document.addEventListener('contextmenu', event => { event.preventDefault(); });
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && e.key === 'I') || (e.ctrlKey && e.key === 'u') || (e.ctrlKey && e.key === 's')) {
+                    e.preventDefault();
+                    this.triggerLockdown('PHÁT HIỆN CỐ TÌNH TRUY CẬP SOURCE CODE!');
+                }
+            });
+            // Debugger Trap Loop
+            setInterval(() => { (function() {}.constructor('debugger')()); }, 1000);
+        }
+
+        triggerLockdown(reason) {
+            document.body.innerHTML = `
+                <div id="security-lock-screen">
+                    <h1 style="font-size: 50px; margin-bottom: 20px;">🚫 SYSTEM LOCKED 🚫</h1>
+                    <h2 style="color: #ff4444;">${reason}</h2>
+                    <p style="color: white; margin-top: 20px;">Tài khoản bị khóa do vi phạm chính sách bảo mật.</p>
+                </div>
+            `;
+        }
+
+        init() {
+          this.renderUI();
+          this.checkIdentity();
+        }
+
+        // --- HARD LOCK IDENTITY LOGIC ---
+        checkIdentity() {
+            const savedIdentity = localStorage.getItem(STORAGE_KEY);
+            const input = document.getElementById('login-input');
+            const btn = document.getElementById('btn-login-main');
+            const container = document.querySelector('.vip-input-container');
+
+            if (savedIdentity) {
+                // Đã có danh tính -> KHÓA CHỨC NĂNG SỬA ĐỔI
+                const user = JSON.parse(savedIdentity);
+                
+                // Thay thế Input bằng Text cố định
+                if(container) {
+                    container.innerHTML = `
+                        <div style="font-size: 16px; color: #00FF00; font-weight: 700; text-shadow: 0 0 10px #00FF00; margin-bottom: 8px; letter-spacing: 1px;">
+                            CHÀO MỪNG QUÝ KHÁCH
+                        </div>
+                        <div style="font-size: 28px; color: white; font-weight: 900; text-transform: uppercase; border: 2px solid #FFD700; padding: 10px; border-radius: 20px; background: rgba(0,0,0,0.6); box-shadow: inset 0 0 20px rgba(255,215,0,0.2);">
+                            ${user.name}
+                        </div>
+                    `;
+                }
+
+                if(btn) {
+                    btn.innerHTML = 'TIẾP TỤC VÀO APP 🐎';
+                    btn.classList.add('locked');
+                    btn.onclick = () => this.enterApp();
+                }
+
+                const lockedMsg = document.createElement('div');
+                lockedMsg.className = 'locked-message';
+                lockedMsg.innerText = '🔒 Danh tính đã được khóa bảo mật trên thiết bị này. Không thể thay đổi.';
+                if(container) container.appendChild(lockedMsg);
+
+            } else {
+                // Chưa có danh tính -> Cho phép nhập lần đầu
+                if(input) input.focus();
+                if(btn) btn.onclick = () => this.registerIdentity();
+                if(input) input.addEventListener('keydown', (e) => { if (e.key === 'Enter') this.registerIdentity(); });
+            }
+        }
+
+        registerIdentity() {
+            const input = document.getElementById('login-input');
+            const btn = document.getElementById('btn-login-main');
+            const val = input.value.trim();
+            
+            if(!val) return alert('Vui lòng nhập tên để Thần Tài gõ cửa!');
+            if(val.length < 2) return alert('Tên quá ngắn, vui lòng nhập lại!');
+            
+            // LƯU VĨNH VIỄN VÀO LOCALSTORAGE
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                name: val,
+                createdAt: new Date().toISOString()
+            }));
+
+            btn.innerHTML = '🚀 ĐANG KHỞI TẠO DANH TÍNH...';
+            setTimeout(() => {
+                this.checkIdentity(); // Refresh UI to Locked State
+                this.enterApp();
+            }, 1000);
+        }
+
+        enterApp() {
+            const overlay = document.getElementById('vip-gatekeeper');
+            if(overlay) {
+                overlay.style.opacity = '0';
+                setTimeout(() => { overlay.style.display = 'none'; }, 800);
+            }
+        }
+
+        renderUI() {
+            if(document.getElementById('vip-gatekeeper')) return;
+
+            const overlay = document.createElement('div');
+            overlay.id = 'vip-gatekeeper';
+            overlay.innerHTML = `
+                <div class="gate-card">
+                    <div style="position:absolute; top:-30px; left:-30px; font-size:50px; transform:rotate(-45deg); filter:drop-shadow(0 0 10px gold);">🌸</div>
+                    <div style="position:absolute; top:-30px; right:-30px; font-size:50px; transform:rotate(45deg); filter:drop-shadow(0 0 10px gold);">🌸</div>
+                    <div style="position:absolute; bottom:-20px; left:-20px; font-size:40px; filter:drop-shadow(0 0 10px gold);">🧧</div>
+                    <div style="position:absolute; bottom:-20px; right:-20px; font-size:40px; filter:drop-shadow(0 0 10px gold);">💰</div>
+
+                    <!-- MÃ ĐÁO THÀNH CÔNG ICON -->
+                    <div class="vip-logo">🐎🐎🐎💨</div>
+                    
+                    <!-- TITLE PLASMA NEON -->
+                    <div class="vip-title-text">TẾT BÍNH NGỌ</div>
+                    
+                    <div class="vip-subtitle">MÃ ĐÁO THÀNH CÔNG - VẠN SỰ NHƯ Ý</div>
+                    
+                    <div class="vip-input-container">
+                        <input type="text" id="login-input" class="vip-input-field" placeholder="Nhập Tên Của Bạn (1 lần duy nhất)..." />
+                    </div>
+                    <button id="btn-login-main" class="vip-btn">NHẬN LÌ XÌ & VÀO APP</button>
+                    
+                    <div style="margin-top: 20px; font-size: 11px; color: #aaa; font-weight:bold; font-style: italic;">
+                        ⚠️ Lưu ý: Tên đăng nhập sẽ được khóa vĩnh viễn vào thiết bị.
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+            this.startLoginEffects();
+        }
+
+        startLoginEffects() {
+            const items = ['🌸', '🧧', '💵', '✨', '🐎', '💰'];
+            setInterval(() => {
+                const overlay = document.getElementById('vip-gatekeeper');
+                if(!overlay || overlay.style.display === 'none') return;
+                
+                const el = document.createElement('div');
+                el.className = 'login-fall-item';
+                el.innerHTML = items[Math.floor(Math.random() * items.length)];
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.fontSize = (Math.random() * 30 + 15) + 'px';
+                el.style.animationDuration = (Math.random() * 4 + 3) + 's';
+                document.body.appendChild(el);
+                
+                setTimeout(() => el.remove(), 7000);
+            }, 300);
+        }
+      }
+
+      window.onload = () => { window.sys = new AppSystem(); };
+
+    })();
+    </script>
+  </body>
+</html>
